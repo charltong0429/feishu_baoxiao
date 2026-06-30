@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="card">
+    <view class="label">描述你的报销内容</view>
+    <textarea
+      class="textarea"
+      placeholder="例：昨天打车去客户公司，花了68元，滴滴出行"
+      value="{{text}}"
+      bindinput="onInput"
+      maxlength="500"
+    />
+    <view class="char-count">{{text.length}}/500</view>
+  </view>
+  <view class="btn-primary" bindtap="onSubmit" tt:if="{{!loading}}">识别报销信息</view>
+  <view class="loading-text" tt:if="{{loading}}">AI 识别中...</view>
+  <view class="error-text" tt:if="{{error}}">{{error}}</view>
+</view>
