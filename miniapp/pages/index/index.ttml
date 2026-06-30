@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="header">
+    <view class="app-title">智能报销</view>
+    <view class="app-sub">选择报销方式</view>
+  </view>
+  <view class="card entry-card" bindtap="goInput">
+    <view class="entry-icon">✏️</view>
+    <view class="entry-label">自然语言输入</view>
+    <view class="entry-desc">用文字描述报销内容</view>
+  </view>
+  <view class="card entry-card" bindtap="goOcr">
+    <view class="entry-icon">📷</view>
+    <view class="entry-label">拍照识别票据</view>
+    <view class="entry-desc">拍摄或上传发票照片</view>
+  </view>
+</view>
