@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="card upload-area" bindtap="chooseImage" tt:if="{{!imageUrl}}">
+    <view class="upload-icon">📷</view>
+    <view class="upload-label">点击拍照或选择票据图片</view>
+  </view>
+  <view class="card preview-area" tt:if="{{imageUrl}}">
+    <image src="{{imageUrl}}" mode="widthFix" class="preview-image" />
+    <view class="reselect" bindtap="chooseImage">重新选择</view>
+  </view>
+  <view class="btn-primary" bindtap="onSubmit" tt:if="{{imageUrl && !loading}}">识别票据</view>
+  <view class="loading-text" tt:if="{{loading}}">AI 识别中...</view>
+  <view class="error-text" tt:if="{{error}}">{{error}}</view>
+</view>

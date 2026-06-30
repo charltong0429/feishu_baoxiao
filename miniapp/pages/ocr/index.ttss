@@ -1,0 +1,7 @@
+.container { padding: 24rpx; }
+.upload-area { display: flex; flex-direction: column; align-items: center; padding: 80rpx 0; }
+.upload-icon { font-size: 100rpx; margin-bottom: 20rpx; }
+.upload-label { font-size: 30rpx; color: #666; }
+.preview-area { padding: 0; overflow: hidden; }
+.preview-image { width: 100%; border-radius: 16rpx; }
+.reselect { text-align: center; color: #1a73e8; font-size: 28rpx; padding: 20rpx; }
