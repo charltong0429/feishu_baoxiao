@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  open_id           String   @id
+  encrypted_api_key String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  @@map("users")
+}
+
+model ReimbursementRule {
+  id          Int      @id @default(autoincrement())
+  category    String
+  max_amount  Decimal  @db.Decimal(10, 2)
+  description String
+  updated_at  DateTime @updatedAt
+
+  @@map("reimbursement_rules")
+}
