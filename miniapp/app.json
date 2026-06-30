@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/settings/index",
+    "pages/input/index",
+    "pages/ocr/index",
+    "pages/preview/index",
+    "pages/success/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "智能报销",
+    "navigationBarBackgroundColor": "#1a73e8",
+    "navigationBarTextStyle": "white"
+  }
+}
