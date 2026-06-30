@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="success-icon">✅</view>
+  <view class="success-title">报销申请已提交</view>
+  <view class="instance-code">审批编号：{{instanceCode}}</view>
+  <view class="hint">请在飞书「审批」中查看进度</view>
+  <view class="btn-primary" bindtap="goHome">返回首页</view>
+</view>

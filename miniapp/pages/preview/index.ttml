@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">确认报销信息</view>
+    <view class="field-row">
+      <view class="field-label">日期</view>
+      <input class="field-input" value="{{data.date}}" bindinput="onChange" data-key="date" />
+    </view>
+    <view class="field-row">
+      <view class="field-label">金额（元）</view>
+      <input class="field-input" value="{{data.amount}}" type="digit" bindinput="onChange" data-key="amount" />
+    </view>
+    <view class="field-row">
+      <view class="field-label">费用类型</view>
+      <input class="field-input" value="{{data.type}}" bindinput="onChange" data-key="type" />
+    </view>
+    <view class="field-row">
+      <view class="field-label">商家/平台</view>
+      <input class="field-input" value="{{data.vendor}}" bindinput="onChange" data-key="vendor" />
+    </view>
+    <view class="field-row">
+      <view class="field-label">报销事由</view>
+      <input class="field-input" value="{{data.reason}}" bindinput="onChange" data-key="reason" />
+    </view>
+  </view>
+  <view class="card warnings-card" tt:if="{{warnings.length > 0}}">
+    <view class="warnings-title">⚠️ 规定提示</view>
+    <view class="warning-text" tt:for="{{warnings}}" tt:key="index">{{item}}</view>
+  </view>
+  <view class="btn-primary" bindtap="onSubmit" tt:if="{{!loading}}">提交至飞书审批</view>
+  <view class="loading-text" tt:if="{{loading}}">提交中...</view>
+  <view class="error-text" tt:if="{{error}}">{{error}}</view>
+</view>

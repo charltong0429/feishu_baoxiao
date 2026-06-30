@@ -1,0 +1,5 @@
+.container { padding: 80rpx 48rpx; text-align: center; }
+.success-icon { font-size: 120rpx; margin-bottom: 32rpx; }
+.success-title { font-size: 44rpx; font-weight: 700; color: #16a34a; margin-bottom: 16rpx; }
+.instance-code { font-size: 26rpx; color: #666; margin-bottom: 12rpx; }
+.hint { font-size: 28rpx; color: #999; margin-bottom: 64rpx; }
