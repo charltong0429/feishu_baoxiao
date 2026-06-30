@@ -35,4 +35,27 @@ async function getOpenId(code) {
   return res.data.open_id;
 }
 
-module.exports = { getOpenId };
+async function submitApproval(openId, { date, amount, type, vendor, reason }) {
+  const token = await getAppAccessToken();
+
+  // ⚠️ 以下 widget id（date/amount/type/vendor/reason）为占位符。
+  // 实施前须在飞书审批管理后台查找真实表单控件 ID 并替换。
+  const form = JSON.stringify([
+    { id: 'date',   type: 'date',  value: date },
+    { id: 'amount', type: 'money', value: String(amount) },
+    { id: 'type',   type: 'input', value: type },
+    { id: 'vendor', type: 'input', value: vendor },
+    { id: 'reason', type: 'input', value: reason }
+  ]);
+
+  const res = await post(
+    'https://open.feishu.cn/open-apis/approval/v4/instances',
+    { approval_code: process.env.FEISHU_APPROVAL_CODE, open_id: openId, form },
+    { Authorization: `Bearer ${token}` }
+  );
+
+  if (res.code !== 0) throw new Error(`Feishu approval failed: ${res.msg}`);
+  return { instance_code: res.data.instance_code };
+}
+
+module.exports = { getOpenId, submitApproval };
