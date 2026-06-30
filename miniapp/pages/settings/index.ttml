@@ -1,0 +1,15 @@
+<view class="card">
+  <view class="title">配置 OpenRouter API Key</view>
+  <view class="desc">Key 将加密保存在服务器，只需配置一次。前往 openrouter.ai 获取你的 Key。</view>
+  <input
+    class="input"
+    type="text"
+    placeholder="sk-or-v1-..."
+    value="{{apiKey}}"
+    bindinput="onInput"
+    password="{{true}}"
+  />
+  <view class="btn-primary" bindtap="onSave" tt:if="{{!loading}}">保存</view>
+  <view class="loading-text" tt:if="{{loading}}">保存中...</view>
+  <view class="error-text" tt:if="{{error}}">{{error}}</view>
+</view>
