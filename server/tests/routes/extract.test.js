@@ -50,3 +50,20 @@ test('POST /api/extract returns 403 if user has no API key configured', async ()
     .send({ content_type: 'text', content: 'test' });
   expect(res.status).toBe(403);
 });
+
+test('POST /api/extract image mode returns extracted fields', async () => {
+  prisma.user.findUnique.mockResolvedValue({ encrypted_api_key: encrypt('sk-or-v1-test') });
+  mockCreate.mockResolvedValue({ choices: [{ message: { content: JSON.stringify(mockExtracted) } }] });
+  const fakeDataUrl = 'data:image/jpeg;base64,/9j/4AAQSkZJRg==';
+  const res = await request(app)
+    .post('/api/extract').set('Authorization', `Bearer ${token}`)
+    .send({ content_type: 'image', content: fakeDataUrl });
+  expect(res.status).toBe(200);
+  expect(res.body).toMatchObject(mockExtracted);
+  // Verify image_url message format was used
+  const callArgs = mockCreate.mock.calls[0][0];
+  const userMsg = callArgs.messages.find(m => m.role === 'user');
+  expect(Array.isArray(userMsg.content)).toBe(true);
+  expect(userMsg.content[0].type).toBe('image_url');
+  expect(userMsg.content[0].image_url.url).toBe(fakeDataUrl);
+});
