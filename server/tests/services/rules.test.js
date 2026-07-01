@@ -9,11 +9,11 @@ const { validate } = require('../../src/services/rules');
 
 beforeEach(() => prisma.reimbursementRule.findFirst.mockReset());
 
-test('returns passed:true and conforming message when within limit', async () => {
+test('returns passed:true and empty warnings when within limit', async () => {
   prisma.reimbursementRule.findFirst.mockResolvedValue({ category: '交通费', max_amount: '100.00' });
   const result = await validate('交通费', 68);
   expect(result.passed).toBe(true);
-  expect(result.warnings[0]).toContain('符合规定');
+  expect(result.warnings).toEqual([]);
 });
 
 test('returns passed:true and over-limit warning when exceeds limit', async () => {

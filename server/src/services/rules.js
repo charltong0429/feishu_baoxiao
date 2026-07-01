@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('./prisma');
 
 async function validate(type, amount) {
   const rule = await prisma.reimbursementRule.findFirst({ where: { category: type } });
@@ -8,7 +7,7 @@ async function validate(type, amount) {
   if (amount > limit) {
     return { passed: true, warnings: [`${type}单次上限 ${limit} 元，本次 ${amount} 元超出限额，审批人将收到提示`] };
   }
-  return { passed: true, warnings: [`${type}单次上限 ${limit} 元，本次 ${amount} 元符合规定 ✓`] };
+  return { passed: true, warnings: [] };
 }
 
 module.exports = { validate };

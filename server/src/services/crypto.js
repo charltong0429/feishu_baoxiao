@@ -2,7 +2,9 @@ const crypto = require('crypto');
 const ALGORITHM = 'aes-256-gcm';
 
 function getKey() {
-  return Buffer.from(process.env.ENCRYPT_SECRET, 'base64');
+  const key = Buffer.from(process.env.ENCRYPT_SECRET, 'base64');
+  if (key.length !== 32) throw new Error('ENCRYPT_SECRET must decode to exactly 32 bytes');
+  return key;
 }
 
 function encrypt(plaintext) {
